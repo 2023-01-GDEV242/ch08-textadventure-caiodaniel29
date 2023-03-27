@@ -34,30 +34,91 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room mainEntrance, advising, firstFloorSomerset, secondFloorSomerset, library, theatre, westBuilding, scienceCenter, physicalEducation, bateman, 
+                tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
+        //Room outside, theater, pub, lab, office;
       
         // create the rooms
-        outside = new Room("outside the main entrance of the university");
-        theater = new Room("in a lecture theater");
-        pub = new Room("in the campus pub");
-        lab = new Room("in a computing lab");
-        office = new Room("in the computing admin office");
+        mainEntrance = new Room("the main entrance of RVCC");
+        advising = new Room("in the Advising Center");
+        firstFloorSomerset = new Room("in the first floor of the Somerset hall");
+        secondFloorSomerset = new Room("in the second floor of the Somerset hall");
+        library = new Room("in the Library");
+        theatre = new Room("in the Theatre");
+        westBuilding = new Room("in the West Building");
+        scienceCenter = new Room("in the Science Center");
+        physicalEducation = new Room("in the P.E. Building");
+        bateman = new Room("in the Bateman Center");
+        tutoring = new Room("in the Tutoring Center");
+        soccerField = new Room("by the Soccer Field");
+        artsBuilding = new Room("in the Arts Building");
+        cafeteria = new Room("in the Cafeteria");
+        collegeCenter = new Room("in the College Center");
+        secondFloorHunterdon = new Room("in the second floor of the Hunterdon hall");
+        firstFloorHunterdon = new Room("in the first floor of the Hunterdon hall");
+        lobby = new Room("in the Lobby");
         
         // initialise room exits
-        outside.setExit("east", theater);
-        outside.setExit("south", lab);
-        outside.setExit("west", pub);
+        mainEntrance.setExit("east", advising);
+        mainEntrance.setExit("north", lobby);
+        mainEntrance.setExit("west", firstFloorSomerset);
 
-        theater.setExit("west", outside);
+        advising.setExit("up", library);
+        advising.setExit("east", mainEntrance);
+        advising.setExit("west", theatre);
 
-        pub.setExit("east", outside);
+        library.setExit("west", westBuilding);
+        library.setExit("down", advising);
 
-        lab.setExit("north", outside);
-        lab.setExit("east", office);
+        theatre.setExit("east", advising);
 
-        office.setExit("west", lab);
+        westBuilding.setExit("north", scienceCenter);
+        westBuilding.setExit("northEast", physicalEducation);
+        westBuilding.setExit("east", library);
+        
+        scienceCenter.setExit("south", westBuilding);
+        scienceCenter.setExit("east", physicalEducation);
+        
+        physicalEducation.setExit("west", scienceCenter);
+        physicalEducation.setExit("east", cafeteria);
+        physicalEducation.setExit("north", bateman);
+        
+        bateman.setExit("up", tutoring);
+        bateman.setExit("north", soccerField);
+        bateman.setExit("south", physicalEducation);
+        
+        tutoring.setExit("down", bateman);
+        
+        soccerField.setExit("south", bateman);
+        soccerField.setExit("west", artsBuilding);
+        
+        cafeteria.setExit("down", collegeCenter);
+        cafeteria.setExit("east", secondFloorHunterdon);
+        cafeteria.setExit("west", physicalEducation);
+        
+        collegeCenter.setExit("up", cafeteria);
+        collegeCenter.setExit("east", firstFloorHunterdon);
+        collegeCenter.setExit("down", lobby);
+        collegeCenter.setExit("south", secondFloorSomerset);
+        
+        lobby.setExit("up", collegeCenter);
+        lobby.setExit("south", mainEntrance);
+        
+        secondFloorHunterdon.setExit("down", firstFloorHunterdon);
+        secondFloorHunterdon.setExit("west", cafeteria);
+        
+        firstFloorHunterdon.setExit("up", secondFloorHunterdon);
+        firstFloorHunterdon.setExit("south", secondFloorSomerset);
+        firstFloorHunterdon.setExit("west", collegeCenter);
+        
+        secondFloorSomerset.setExit("down", firstFloorSomerset);
+        secondFloorSomerset.setExit("north", collegeCenter);
+        secondFloorSomerset.setExit("east", firstFloorSomerset);
+        
+        firstFloorSomerset.setExit("up", secondFloorSomerset);
+        secondFloorSomerset.setExit("west", mainEntrance);
 
-        currentRoom = outside;  // start game outside
+        currentRoom = mainEntrance;  // start game outside
     }
 
     /**
@@ -84,8 +145,9 @@ public class Game
     private void printWelcome()
     {
         System.out.println();
-        System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
+        System.out.println("Welcome to the Raritan Valley Community College");
+        System.out.println("Let`s go find Professor Crosbie, you only have a couple more");
+        System.out.println("minutes to turn in your homework. Hurry up!");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
