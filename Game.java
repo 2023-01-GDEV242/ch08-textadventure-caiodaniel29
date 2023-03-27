@@ -36,7 +36,6 @@ public class Game
     {
         Room mainEntrance, advising, firstFloorSomerset, secondFloorSomerset, library, theatre, westBuilding, scienceCenter, physicalEducation, bateman, 
                 tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
-        //Room outside, theater, pub, lab, office;
       
         // create the rooms
         mainEntrance = new Room("the main entrance of RVCC");
@@ -180,6 +179,10 @@ public class Game
             case QUIT:
                 wantToQuit = quit(command);
                 break;
+                
+            case EAT:
+                printEat();
+                break;
         }
         return wantToQuit;
     }
@@ -200,6 +203,12 @@ public class Game
         parser.showCommands();
     }
 
+    private void printEat()
+    {
+        System.out.println("You just ate. Now you are not hungry anymore.");
+        
+    }
+    
     /** 
      * Try to go in one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
@@ -226,6 +235,8 @@ public class Game
         }
     }
 
+    
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
