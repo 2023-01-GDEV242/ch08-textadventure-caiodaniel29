@@ -27,6 +27,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        String[] backpack = new String[3];
     }
 
     /**
@@ -206,6 +207,16 @@ public class Game
     private void printEat()
     {
         System.out.println("You just ate. Now you are not hungry anymore.");
+        
+    }
+    
+    private void pickUpItem()
+    {
+        if (currentRoom == library){
+            
+            
+        }
+        
         
     }
     
