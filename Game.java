@@ -21,6 +21,7 @@ public class Game
     private Room currentRoom;
     private String answer;
     private boolean question;
+    private Room library2;
     /**
      * Create the game and initialise its internal map.
      */
@@ -119,6 +120,7 @@ public class Game
         firstFloorSomerset.setExit("up", secondFloorSomerset);
         secondFloorSomerset.setExit("west", mainEntrance);
 
+        library2 = library;
         currentRoom = mainEntrance;  // start game outside
     }
 
@@ -218,7 +220,7 @@ public class Game
     
     private void lookAround()
     {
-        if (currentRoom == library){
+        if (currentRoom == library2){
             
             System.out.println("Hey look! There is an Anatomy book on the floor, do you want to take it?");
             
