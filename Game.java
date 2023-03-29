@@ -19,7 +19,8 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-        
+    private String answer;
+    private boolean question;
     /**
      * Create the game and initialise its internal map.
      */
@@ -33,7 +34,7 @@ public class Game
     /**
      * Create all the rooms and link their exits together.
      */
-    private void createRooms()
+    public void createRooms()
     {
         Room mainEntrance, advising, firstFloorSomerset, secondFloorSomerset, library, theatre, westBuilding, scienceCenter, physicalEducation, bateman, 
                 tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
@@ -59,9 +60,9 @@ public class Game
         lobby = new Room("in the Lobby");
         
         // initialise room exits
-        mainEntrance.setExit("east", advising);
+        mainEntrance.setExit("west", advising);
         mainEntrance.setExit("north", lobby);
-        mainEntrance.setExit("west", firstFloorSomerset);
+        mainEntrance.setExit("east", firstFloorSomerset);
 
         advising.setExit("up", library);
         advising.setExit("east", mainEntrance);
@@ -184,6 +185,11 @@ public class Game
             case EAT:
                 printEat();
                 break;
+                
+            case LOOK:
+                lookAround();
+                break;
+                
         }
         return wantToQuit;
     }
@@ -210,13 +216,33 @@ public class Game
         
     }
     
-    private void pickUpItem()
+    private void lookAround()
     {
         if (currentRoom == library){
             
+            System.out.println("Hey look! There is an Anatomy book on the floor, do you want to take it?");
             
+            if ( answer == "yes"){
+                
+                System.out.println("You picked up the item!");
+            }
+            
+            else if (answer == "no"){
+                
+                System.out.println("You left the item behind.");
+
+            }
+            
+            else {
+                
+                System.out.println("It's an yes/no question man,c'mon.");
+            }
         }
         
+        else {
+            
+            System.out.println("The room is empty. :/");
+        }
         
     }
     
@@ -245,8 +271,6 @@ public class Game
             System.out.println(currentRoom.getLongDescription());
         }
     }
-
-    
     
     /** 
      * "Quit" was entered. Check the rest of the command to see

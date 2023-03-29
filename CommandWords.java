@@ -63,6 +63,7 @@ public class CommandWords
     {
         for(String command : validCommands.keySet()) {
             System.out.print(command + "  ");
+            
         }
         System.out.println();
     }
