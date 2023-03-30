@@ -25,6 +25,7 @@ public class Game
     private boolean question;
     private String response;
     private Room library2;
+    private Room westBuilding2;
     private Scanner reader;   
     private int maxItems = 3;
     private int items = 0;
@@ -130,7 +131,7 @@ public class Game
         secondFloorSomerset.setExit("west", mainEntrance);
 
         library2 = library;
-        Room westBuilding2 = westBuilding;
+        westBuilding2 = westBuilding;
         currentRoom = mainEntrance;  // start game outside
     }
 
@@ -240,28 +241,21 @@ public class Game
     private void question(){
       
         if (currentRoom == library2){
-            
-        if (items < 3){
-            
+           
+         if (items < 3){
             System.out.println("You picked up the item!");       
             bag.add("Book");
             items++;
-        }
-        
-        else {
-            
+         }
+         else {
             System.out.println("Your bag is full! You can't pick up the item."); 
+         }
+      }
+        else if(currentRoom == westBuilding2){
+            System.out.println("Mike:");
+            System.out.println("Hey man, he just left! He said he'll be in his office.");
         }
         
-      }
-      
-      else if (currentRoom == westBuilding2){
-          
-          System.out.println("Professor Crosbie is not here, but Mike is in the computer lab!");
-          System.out.printl("Do you want to ask him about Crosbie?");
-      }
-      
-      
       else{
           System.out.println("Yes?");
       }
@@ -286,7 +280,13 @@ public class Game
             
             System.out.println("Hey look! There is an Anatomy book on the floor, do you want to take it?");
         }
-        else if(currentRoom == 
+        
+      else if (currentRoom == westBuilding2){
+          
+          System.out.println("Professor Crosbie is not here, but Mike is in the computer lab!");
+          System.out.println("Do you want to ask him about Crosbie?");
+      }
+        
         else {
             System.out.println("The room is empty. :/");
         }
