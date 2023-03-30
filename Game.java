@@ -1,3 +1,5 @@
+import java.util.Scanner;
+import java.util.ArrayList;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,9 +21,15 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private String answer;
+    private boolean answer;
     private boolean question;
+    private String response;
     private Room library2;
+    private Scanner reader;   
+    private int maxItems = 3;
+    private int items = 0;
+    ArrayList<String> bag = new ArrayList<String>();
+    
     /**
      * Create the game and initialise its internal map.
      */
@@ -30,6 +38,7 @@ public class Game
         createRooms();
         parser = new Parser();
         String[] backpack = new String[3];
+        
     }
 
     /**
@@ -121,6 +130,7 @@ public class Game
         secondFloorSomerset.setExit("west", mainEntrance);
 
         library2 = library;
+        Room westBuilding2 = westBuilding;
         currentRoom = mainEntrance;  // start game outside
     }
 
@@ -192,12 +202,20 @@ public class Game
                 lookAround();
                 break;
                 
+            case YES:
+                question();
+                break;
+                
+            case NO:
+                question2();
+                break;
+                
+                
         }
         return wantToQuit;
     }
 
     // implementations of user commands:
-
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
@@ -218,31 +236,58 @@ public class Game
         
     }
     
+    // case of the user input "yes":
+    private void question(){
+      
+        if (currentRoom == library2){
+            
+        if (items < 3){
+            
+            System.out.println("You picked up the item!");       
+            bag.add("Book");
+            items++;
+        }
+        
+        else {
+            
+            System.out.println("Your bag is full! You can't pick up the item."); 
+        }
+        
+      }
+      
+      else if (currentRoom == westBuilding2){
+          
+          System.out.println("Professor Crosbie is not here, but Mike is in the computer lab!");
+          System.out.printl("Do you want to ask him about Crosbie?");
+      }
+      
+      
+      else{
+          System.out.println("Yes?");
+      }
+    }
+    
+    // case of the "no" from user:
+    private void question2(){
+        
+          if (currentRoom == library2){
+    
+           System.out.println("You left the item.");       
+          }
+          else{
+           System.out.println("No?");
+       }
+      
+    }
+    
     private void lookAround()
     {
         if (currentRoom == library2){
             
             System.out.println("Hey look! There is an Anatomy book on the floor, do you want to take it?");
-            
-            if ( answer == "yes"){
-                
-                System.out.println("You picked up the item!");
-            }
-            
-            else if (answer == "no"){
-                
-                System.out.println("You left the item behind.");
-
-            }
-            
-            else {
-                
-                System.out.println("It's an yes/no question man,c'mon.");
-            }
         }
-        
+        else if(currentRoom == 
         else {
-            
             System.out.println("The room is empty. :/");
         }
         
@@ -271,6 +316,7 @@ public class Game
         else {
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            
         }
     }
     
