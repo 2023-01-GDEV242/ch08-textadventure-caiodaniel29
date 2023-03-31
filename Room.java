@@ -27,11 +27,11 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
-    {
-        this.description = description;
-        exits = new HashMap<>();
-    }
+    // public Room(String description) 
+    // {
+        // this.description = description;
+        // exits = new HashMap<>();
+    // }
 
     /**
      * Define an exit from this room.
@@ -69,14 +69,14 @@ public class Room
      * @return Details of the room's exits.
      */
     private String getExitString()
-    {
-        String returnString = "Exits:";
-        Set<String> keys = exits.keySet();
-        for(String exit : keys) {
-            returnString += " " + exit;
-        }
-        return returnString;
-    }
+    // {
+        // String returnString = "Exits:";
+        // Set<String> keys = exits.keySet();
+        // for(String exit : keys) {
+            // returnString += " " + exit;
+        // }
+        // return returnString;
+    // }
 
     /**
      * Return the room that is reached if we go from this room in direction

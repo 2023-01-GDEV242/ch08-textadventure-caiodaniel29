@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -29,7 +30,7 @@ public class Game
     private Scanner reader;   
     private int maxItems = 3;
     private int items = 0;
-    ArrayList<String> bag = new ArrayList<String>();
+    HashMap<String, String> bag = new HashMap<String, String>();
     
     /**
      * Create the game and initialise its internal map.
@@ -244,7 +245,7 @@ public class Game
            
          if (items < 3){
             System.out.println("You picked up the item!");       
-            bag.add("Book");
+            bag.put("Book", "Book");
             items++;
          }
          else {
