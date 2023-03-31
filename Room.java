@@ -20,6 +20,7 @@ public class Room
 {
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private Items item;
 
     /**
      * Create a room described "description". Initially, it has
@@ -27,11 +28,12 @@ public class Room
      * "an open court yard".
      * @param description The room's description.
      */
-    // public Room(String description) 
-    // {
-        // this.description = description;
-        // exits = new HashMap<>();
-    // }
+    public Room(String description) 
+    {
+        this.description = description;
+        exits = new HashMap<>();
+        item = null;
+    }
 
     /**
      * Define an exit from this room.
@@ -43,6 +45,11 @@ public class Room
         exits.put(direction, neighbor);
     }
 
+    public void setItem(Items item){
+        
+        this.item = item;
+    }
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -60,23 +67,34 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getExitString();
+        return "You are " + description + ".\n" + getItemString() + "\n" + getExitString();
     }
 
+    private String getItemString(){
+        String returnString = "";
+        
+        if (item != null){
+            
+            returnString += "You see a " + item.getDescription();
+        }
+        
+        return returnString;
+    }
+    
     /**
      * Return a string describing the room's exits, for example
      * "Exits: north west".
      * @return Details of the room's exits.
      */
     private String getExitString()
-    // {
-        // String returnString = "Exits:";
-        // Set<String> keys = exits.keySet();
-        // for(String exit : keys) {
-            // returnString += " " + exit;
-        // }
-        // return returnString;
-    // }
+    {
+        String returnString = "Exits:";
+        Set<String> keys = exits.keySet();
+        for(String exit : keys) {
+            returnString += " " + exit;
+        }
+        return returnString;
+    }
 
     /**
      * Return the room that is reached if we go from this room in direction

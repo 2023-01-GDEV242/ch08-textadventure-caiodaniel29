@@ -5,7 +5,7 @@
  * @author (seu nome) 
  * @version (um número da versão ou uma data)
  */
-public class items
+public class Items
 {
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
     private int weight;
@@ -14,10 +14,16 @@ public class items
     /**
      * Construtor para objetos da classe items
      */
-    public items(int weight, String descriptionItem)
+    public Items(int weight, String descriptionItem)
     {
         // inicializa variáveis de instância
-        weight = 0;
+        this.weight = weight;
+        this.descriptionItem = descriptionItem;
     }
 
+    public String getDescription(){
+        
+        return descriptionItem;
+    }
+    
 }
