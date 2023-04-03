@@ -50,6 +50,11 @@ public class Room
         this.item = item;
     }
     
+    public Items getItem(){
+        
+        return item;
+    }
+    
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -70,7 +75,7 @@ public class Room
         return "You are " + description + ".\n" + getItemString() + "\n" + getExitString();
     }
 
-    private String getItemString(){
+    public String getItemString(){
         String returnString = "";
         
         if (item != null){

@@ -27,6 +27,7 @@ public class Game
     private String response;
     private Room library2;
     private Room westBuilding2;
+    private Items bookAnatomy;
     private Scanner reader;   
     private int maxItems = 3;
     private int items = 0;
@@ -139,7 +140,9 @@ public class Game
 
         library2 = library;
         westBuilding2 = westBuilding;
-        currentRoom = mainEntrance;  // start game outside
+        bookAnatomy = book;
+        
+        currentRoom = mainEntrance;  // start game in the main entrance
     }
 
     /**
@@ -205,17 +208,21 @@ public class Game
             case EAT:
                 printEat();
                 break;
-                
+            /*    
             case LOOK:
                 lookAround();
                 break;
-                
+            
             case YES:
                 question();
                 break;
                 
             case NO:
                 question2();
+                break;
+            */
+            case TAKE:
+                takeItem();
                 break;
                 
                 
@@ -244,6 +251,7 @@ public class Game
         
     }
     
+    /*
     // case of the user input "yes":
     private void question(){
       
@@ -280,6 +288,28 @@ public class Game
        }
       
     }
+    */
+    
+    // taking the item from the room:
+    private void takeItem(){
+        
+        if (currentRoom.getItem() != null){
+            
+            // how to set the item in the current room as null???
+            
+            System.out.println("You picked up the item!");       
+            bag.put("Book", "Book");
+            items++;
+            
+        }
+        
+        else {
+            
+            System.out.println("There is no item in the room.");
+        }
+        
+    }
+    
     
     private void lookAround()
     {
