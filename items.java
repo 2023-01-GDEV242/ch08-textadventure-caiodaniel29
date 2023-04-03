@@ -7,6 +7,7 @@
  */
 public class Items
 {
+    //Capital I
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
     private int weight;
     private String descriptionItem;
