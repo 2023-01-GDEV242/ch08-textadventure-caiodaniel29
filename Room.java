@@ -52,7 +52,15 @@ public class Room
     
     public Items getItem(){
         
-        return item;
+        Items itemsToReturn = item;
+        this.item = null;
+        
+        return itemsToReturn;
+    }
+    
+    public boolean hasItem(){
+        
+        return item != null;
     }
     
     /**

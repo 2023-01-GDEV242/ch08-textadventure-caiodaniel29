@@ -293,11 +293,11 @@ public class Game
     // taking the item from the room:
     private void takeItem(){
         
-        if (currentRoom.getItem() != null){
+        if (currentRoom.hasItem() == true){
             
-            // how to set the item in the current room as null???
+            Items itemToTake = currentRoom.getItem();
             
-            System.out.println("You picked up the item!");       
+            System.out.println("You picked up the " + itemToTake.getDescription() + "!");       
             bag.put("Book", "Book");
             items++;
             
