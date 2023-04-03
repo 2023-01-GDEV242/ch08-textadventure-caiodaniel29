@@ -51,6 +51,8 @@ public class Game
         Room mainEntrance, advising, firstFloorSomerset, secondFloorSomerset, library, theatre, westBuilding, scienceCenter, physicalEducation, bateman, 
                 tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
       
+        Items book;
+                
         // create the rooms
         mainEntrance = new Room("the main entrance of RVCC");
         advising = new Room("in the Advising Center");
@@ -71,6 +73,9 @@ public class Game
         firstFloorHunterdon = new Room("in the first floor of the Hunterdon hall");
         lobby = new Room("in the Lobby");
         
+        //create items
+        book = new Items( 2, "Anatomy book");
+        
         // initialise room exits
         mainEntrance.setExit("west", advising);
         mainEntrance.setExit("north", lobby);
@@ -82,6 +87,7 @@ public class Game
 
         library.setExit("west", westBuilding);
         library.setExit("down", advising);
+        library.setItem(book);
 
         theatre.setExit("east", advising);
 
