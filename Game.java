@@ -22,6 +22,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Room pastRoom;
     private boolean answer;
     private boolean question;
     private String response;
@@ -143,6 +144,7 @@ public class Game
         bookAnatomy = book;
         
         currentRoom = mainEntrance;  // start game in the main entrance
+        pastRoom = null;             // start with no previous room
     }
 
     /**
@@ -225,6 +227,10 @@ public class Game
                 takeItem();
                 break;
                 
+            case BACK:
+                backOneRoom();
+                break;
+                
                 
         }
         return wantToQuit;
@@ -238,20 +244,24 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You are lost. You are alone. You wander");
+        System.out.println("You need find Professor Crosbie ASAP ");
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
     }
 
+    /**
+     * Here is the EAT command. 
+     */
     private void printEat()
     {
         System.out.println("You just ate. Now you are not hungry anymore.");
         
     }
     
-    /*
+    /*.
+     * 
     // case of the user input "yes":
     private void question(){
       
@@ -330,9 +340,24 @@ public class Game
         
     }
     
+    private void backOneRoom(){
+        
+        if (pastRoom != null){
+            
+            currentRoom = pastRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+        
+        else {
+            System.out.println("There is no previous room to go back to.");
+        }
+    }
+    
     /** 
      * Try to go in one direction. If there is an exit, enter the new
      * room, otherwise print an error message.
+     * Also, set the previous room to the current room before changing the current
+     * room to the next room.
      */
     private void goRoom(Command command) 
     {
@@ -351,6 +376,7 @@ public class Game
             System.out.println("There is no door!");
         }
         else {
+            pastRoom = currentRoom;
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
             
