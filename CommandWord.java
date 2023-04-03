@@ -20,7 +20,7 @@ public enum CommandWord
     CommandWord(String commandString)
     {
         this.commandString = commandString;
-    }
+    } 
     
     /**
      * @return The command word as a string.

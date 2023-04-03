@@ -88,7 +88,7 @@ public class Room
         
         if (item != null){
             
-            returnString += "You see a " + item.getDescription();
+            returnString += "You see a " + item.getDescription() + "(" + item.getWeight() + "kg)";
         }
         
         return returnString;

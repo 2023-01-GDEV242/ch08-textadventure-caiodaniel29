@@ -47,13 +47,15 @@ public class Game
 
     /**
      * Create all the rooms and link their exits together.
+     * Also creating all the items and linking them to their specific 
+     * initial rooms.
      */
     public void createRooms()
     {
         Room mainEntrance, advising, firstFloorSomerset, secondFloorSomerset, library, theatre, westBuilding, scienceCenter, physicalEducation, bateman, 
                 tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
       
-        Items book;
+        Items book, keys;
                 
         // create the rooms
         mainEntrance = new Room("the main entrance of RVCC");
@@ -77,6 +79,7 @@ public class Game
         
         //create items
         book = new Items( 2, "Anatomy book");
+        keys = new Items( 2, "Keychain");
         
         // initialise room exits
         mainEntrance.setExit("west", advising);
@@ -135,9 +138,10 @@ public class Game
         secondFloorSomerset.setExit("down", firstFloorSomerset);
         secondFloorSomerset.setExit("north", collegeCenter);
         secondFloorSomerset.setExit("east", firstFloorSomerset);
+        secondFloorSomerset.setItem(keys);
         
         firstFloorSomerset.setExit("up", secondFloorSomerset);
-        secondFloorSomerset.setExit("west", mainEntrance);
+        firstFloorSomerset.setExit("west", mainEntrance);
 
         library2 = library;
         westBuilding2 = westBuilding;
@@ -244,8 +248,9 @@ public class Game
      */
     private void printHelp() 
     {
-        System.out.println("You need find Professor Crosbie ASAP ");
-        System.out.println("around at the university.");
+        System.out.println("You need find Professor Crosbie ASAP, but you have no idea where he is. ");
+        System.out.println("He is at RVCC, but where? Time is ticking, find him before it is too late!");
+        System.out.println("Also, you hurt your ankle at practice, you can only carry 5 kilograms in your bag at a time.");
         System.out.println();
         System.out.println("Your command words are:");
         parser.showCommands();
@@ -300,16 +305,34 @@ public class Game
     }
     */
     
-    // taking the item from the room:
+    /**
+     * The take method will make possible to pick up the item that is located 
+     * in the current room that the player is. Not letting him/her pick it up more than once.
+     */
     private void takeItem(){
         
-        if (currentRoom.hasItem() == true){
+        if (currentRoom.hasItem() == true && items > 5){
+            
+            System.out.println("You can`t pick up the item, your bag is full.");
+        }
+        
+        else if (currentRoom.hasItem() == true && items < 5){
             
             Items itemToTake = currentRoom.getItem();
             
             System.out.println("You picked up the " + itemToTake.getDescription() + "!");       
-            bag.put("Book", "Book");
-            items++;
+            
+            if(itemToTake.getDescription() == "Anatomy book"){
+                bag.put("Book", "Book");
+                items++;
+                items++;
+            }
+            
+            else if(itemToTake.getDescription() == "Keychain"){
+                bag.put("Keys", "Keys");
+                items++;
+                items++;
+            }
             
         }
         
@@ -320,7 +343,10 @@ public class Game
         
     }
     
-    
+    /**
+     * The look method, should check if the room has any items or persons on it. 
+     * Changed plans for now because of lack of time.
+     */
     private void lookAround()
     {
         if (currentRoom == library2){
@@ -340,6 +366,9 @@ public class Game
         
     }
     
+    /**
+     *  The back command (back one room).
+     */
     private void backOneRoom(){
         
         if (pastRoom != null){

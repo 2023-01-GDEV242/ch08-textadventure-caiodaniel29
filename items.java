@@ -9,7 +9,7 @@ public class Items
 {
     //Capital I
     // variáveis de instância - substitua o exemplo abaixo pelo seu próprio
-    private int weight;
+    private int weightItem;
     private String descriptionItem;
 
     /**
@@ -18,7 +18,7 @@ public class Items
     public Items(int weight, String descriptionItem)
     {
         // inicializa variáveis de instância
-        this.weight = weight;
+        this.weightItem = weight;
         this.descriptionItem = descriptionItem;
     }
 
@@ -26,5 +26,9 @@ public class Items
         
         return descriptionItem;
     }
-    
+     
+    public int getWeight(){
+        
+        return weightItem;
+    }
 }
