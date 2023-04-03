@@ -1,0 +1,19 @@
+Features:
+
+- added new commands.(C)
+- added new commands.(C)
+
+- added items to the game, items have both a description and a weight. (B)
+- made possible for the rooms to hold multiple items. (B)
+- implemented the back command so you can go back to the previous room. (B)
+
+
+
+
+
+
+
+Additional features:
+
+- added the eat method
+- look method
