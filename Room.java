@@ -21,7 +21,6 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private Items item;
-    private Energy energy;
 
     /**
      * Create a room described "description". Initially, it has
@@ -47,19 +46,6 @@ public class Room
         exits.put(direction, neighbor);
     }
 
-    public void setEnergy(){
-        
-        this.energy = energy;
-    }
-    
-    public Energy getEnergy(){
-        
-        Energy energyToReturn = energy;
-        this.energy = null;
-        
-        return energyToReturn;
-    }
-    
     public void setItem(Items item){
         
         this.item = item;
@@ -86,20 +72,6 @@ public class Room
     {
         return description;
     }
-
-    public String getEnergyString(){
-        
-        if (energy.getEnergyPoints() == 6){
-            return "You are getting hungry...";
-        }
-        else if(energy.getEnergyPoints() == 3){
-            return "You are starving, almost running out of energy!";
-        }
-        else {
-            return "";
-        }
-        
-    }
     
     /**
      * Return a description of the room in the form:
@@ -109,7 +81,7 @@ public class Room
      */
     public String getLongDescription()
     {
-        return "You are " + description + ".\n" + getItemString() + "\n" + getExitString() + "\n" + getEnergyString();
+        return "You are " + description + ".\n" + getItemString() + "\n" + getExitString();
     }
 
     public String getItemString(){

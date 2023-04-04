@@ -60,7 +60,7 @@ public class Game
       
         Items book, keys;
         
-        Energy energyLevel;
+        //Energy energyLevel;
                 
         // create the rooms
         mainEntrance = new Room("the main entrance of RVCC");
