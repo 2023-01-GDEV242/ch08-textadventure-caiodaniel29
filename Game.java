@@ -28,10 +28,13 @@ public class Game
     private String response;
     private Room library2;
     private Room westBuilding2;
+    private Room cafeteria2;
     private Items bookAnatomy;
     private Scanner reader;   
     private int maxItems = 3;
     private int items = 0;
+    private int energy = 10;
+    private boolean finished = false;
     HashMap<String, String> bag = new HashMap<String, String>();
     
     /**
@@ -56,6 +59,8 @@ public class Game
                 tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
       
         Items book, keys;
+        
+        Energy energyLevel;
                 
         // create the rooms
         mainEntrance = new Room("the main entrance of RVCC");
@@ -80,6 +85,9 @@ public class Game
         //create items
         book = new Items( 2, "Anatomy book");
         keys = new Items( 2, "Keychain");
+        
+        // //creating the starting energy
+        // energyLevel = new Energy(10);
         
         // initialise room exits
         mainEntrance.setExit("west", advising);
@@ -141,10 +149,11 @@ public class Game
         secondFloorSomerset.setItem(keys);
         
         firstFloorSomerset.setExit("up", secondFloorSomerset);
-        firstFloorSomerset.setExit("west", mainEntrance);
+        // firstFloorSomerset.setExit("west", mainEntrance);        this door is a trap door
 
         library2 = library;
         westBuilding2 = westBuilding;
+        cafeteria2 = cafeteria;
         bookAnatomy = book;
         
         currentRoom = mainEntrance;  // start game in the main entrance
@@ -161,7 +170,6 @@ public class Game
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
                 
-        boolean finished = false;
         while (! finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
@@ -261,7 +269,19 @@ public class Game
      */
     private void printEat()
     {
-        System.out.println("You just ate. Now you are not hungry anymore.");
+        if(currentRoom == cafeteria2 && energy < 10){
+            energy = 10;
+            System.out.println("You just ate. Now you are not hungry anymore.");
+        }
+        
+        else if(currentRoom == cafeteria2 && energy == 10){
+            
+            System.out.println("You can't eat, you are full already.");
+        }
+        
+        else {
+            System.out.println("There is no food here.");
+        }
         
     }
     
@@ -332,6 +352,7 @@ public class Game
                 bag.put("Keys", "Keys");
                 items++;
                 items++;
+                
             }
             
         }
@@ -342,7 +363,7 @@ public class Game
         }
         
     }
-    
+        
     /**
      * The look method, should check if the room has any items or persons on it. 
      * Changed plans for now because of lack of time.
@@ -387,6 +408,8 @@ public class Game
      * room, otherwise print an error message.
      * Also, set the previous room to the current room before changing the current
      * room to the next room.
+     * Also, adding the energy countdown, after every move you lose 1 energy point,
+     * if it gets to zero, it is game over.
      */
     private void goRoom(Command command) 
     {
@@ -408,8 +431,16 @@ public class Game
             pastRoom = currentRoom;
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
+            energy--;
             
         }
+        
+        if(energy == 0){
+            System.out.println("You ran out of energy.");
+            System.out.println("GAME OVER");
+            finished = true;
+        }
+        
     }
     
     /** 
