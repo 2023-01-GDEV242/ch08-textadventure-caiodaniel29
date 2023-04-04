@@ -29,6 +29,7 @@ public class Game
     private Room library2;
     private Room westBuilding2;
     private Room cafeteria2;
+    private Room advising2;
     private Items bookAnatomy;
     private Scanner reader;   
     private int maxItems = 3;
@@ -64,12 +65,12 @@ public class Game
                 
         // create the rooms
         mainEntrance = new Room("the main entrance of RVCC");
-        advising = new Room("in the Advising Center");
+        advising = new Room("in the Advising Center, and Coach Mark is here");
         firstFloorSomerset = new Room("in the first floor of the Somerset hall");
         secondFloorSomerset = new Room("in the second floor of the Somerset hall");
         library = new Room("in the Library");
         theatre = new Room("in the Theatre");
-        westBuilding = new Room("in the West Building");
+        westBuilding = new Room("in the West Building, Mike is here!");
         scienceCenter = new Room("in the Science Center");
         physicalEducation = new Room("in the P.E. Building");
         bateman = new Room("in the Bateman Center");
@@ -154,6 +155,7 @@ public class Game
         library2 = library;
         westBuilding2 = westBuilding;
         cafeteria2 = cafeteria;
+        advising2 = advising;
         bookAnatomy = book;
         
         currentRoom = mainEntrance;  // start game in the main entrance
@@ -243,6 +245,9 @@ public class Game
                 backOneRoom();
                 break;
                 
+            case TALK:
+                talkToNpc();
+                break;
                 
         }
         return wantToQuit;
@@ -283,6 +288,20 @@ public class Game
             System.out.println("There is no food here.");
         }
         
+    }
+    
+    private void talkToNpc(){
+        
+        if(currentRoom == advising2){
+            
+            System.out.println("Coach Mark: ");
+            System.out.println("Look for your Professsor where your class normally is.");
+        }
+        
+        else if(currentRoom == westBuilding2){
+            System.out.println("Mike: ");
+            System.out.println("Hey man, you just missed him! He said he was going to his office.");
+        }
     }
     
     /*.

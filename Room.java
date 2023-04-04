@@ -21,6 +21,7 @@ public class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private Items item;
+    private int energy;
 
     /**
      * Create a room described "description". Initially, it has
@@ -81,9 +82,10 @@ public class Room
      */
     public String getLongDescription()
     {
+        energy++;
         return "You are " + description + ".\n" + getItemString() + "\n" + getExitString();
     }
-
+    
     public String getItemString(){
         String returnString = "";
         
