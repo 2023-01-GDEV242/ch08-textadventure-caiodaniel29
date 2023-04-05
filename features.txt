@@ -1,7 +1,7 @@
 Features:
 
 - added new commands.(C)
-- added new commands.(C)
+- streamline printing of available commands.(C)
 
 - added items to the game, items have both a description and a weight. (B)
 - made possible for the rooms to hold multiple items. (B)
@@ -12,15 +12,12 @@ Features:
 - added the energy feature, setting a possible limit for the game. (A)
 - added the eat method, which restores the player's energy(health). (A)
 
+- implemented an item. (EXTRA CREDIT)
 - implemented a collection of items(inventory) as "bag", so the player 
 can carry multiple items. (EXTRA CREDIT)
 - allowed player to take an Item.  (EXTRA CREDIT)
 - added weight to items limiting the amount of items that the player 
 can carry.  (EXTRA CREDIT)
-
-
-
-
 
 
 Additional features:
