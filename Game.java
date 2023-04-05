@@ -16,6 +16,8 @@ import java.util.HashMap;
  * 
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
+ * 
+ * edited by Caio Sanchez
  */
 
 public class Game 
@@ -285,7 +287,8 @@ public class Game
     }
 
     /**
-     * Here is the EAT command. 
+     * Here is the EAT command. It will increase the energy value, and set it back to 10
+     * which is its default value.
      */
     private void printEat()
     {
@@ -304,7 +307,10 @@ public class Game
         }
         
     }
-    
+    /**
+     * this method is responsible to crate the communication between the the player
+     * and the NPC's of the game.
+     */
     private void talkToNpc(){
         
         if(currentRoom == advising2){
@@ -398,8 +404,6 @@ public class Game
                 bag.put("Keys", "Keys");
                 items++;
                 items++;
-                
-                
             }
             
             else if(itemToTake.getDescription() == "Soccer ball"){
@@ -469,6 +473,7 @@ public class Game
      * room to the next room.
      * Also, adding the energy countdown, after every move you lose 1 energy point,
      * if it gets to zero, it is game over.
+     * Also, adding the case of the win of the player.
      */
     private void goRoom(Command command) 
     {

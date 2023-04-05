@@ -86,6 +86,10 @@ public class Room
         return "You are " + description + ".\n" + getItemString() + "\n" + getExitString();
     }
     
+    /**
+     * Return a description of the item in the current room.
+     * @return the description and value of weight of item.
+     */
     public String getItemString(){
         String returnString = "";
         
