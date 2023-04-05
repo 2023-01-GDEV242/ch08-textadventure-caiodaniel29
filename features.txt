@@ -7,6 +7,16 @@ Features:
 - made possible for the rooms to hold multiple items. (B)
 - implemented the back command so you can go back to the previous room. (B)
 
+- NPC's with clues. (A)
+- trap door implemented. (A)
+- added the energy feature, setting a possible limit for the game. (A)
+- added the eat method, which restores the player's energy(health). (A)
+
+- implemented a collection of items(inventory) as "bag", so the player 
+can carry multiple items. (EXTRA CREDIT)
+- allowed player to take an Item.  (EXTRA CREDIT)
+- added weight to items limiting the amount of items that the player 
+can carry.  (EXTRA CREDIT)
 
 
 
@@ -15,5 +25,4 @@ Features:
 
 Additional features:
 
-- added the eat method
 - look method

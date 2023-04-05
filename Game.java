@@ -30,10 +30,17 @@ public class Game
     private Room westBuilding2;
     private Room cafeteria2;
     private Room advising2;
+    private Room firstFloorSomerset2;
+    private Room mainEntrance2;
+    private Room soccerField2;
+    private Room secondFloorSomerset2;
+    private Room gym;
+    private Room arts2;
     private Items bookAnatomy;
     private Scanner reader;   
     private int maxItems = 3;
     private int items = 0;
+    private String energyStatus;
     private int energy = 10;
     private boolean finished = false;
     HashMap<String, String> bag = new HashMap<String, String>();
@@ -59,7 +66,7 @@ public class Game
         Room mainEntrance, advising, firstFloorSomerset, secondFloorSomerset, library, theatre, westBuilding, scienceCenter, physicalEducation, bateman, 
                 tutoring, soccerField, artsBuilding, cafeteria, collegeCenter, secondFloorHunterdon, firstFloorHunterdon, lobby;
       
-        Items book, keys;
+        Items book, keys, soccerBall;
         
         //Energy energyLevel;
                 
@@ -67,17 +74,17 @@ public class Game
         mainEntrance = new Room("the main entrance of RVCC");
         advising = new Room("in the Advising Center, and Coach Mark is here");
         firstFloorSomerset = new Room("in the first floor of the Somerset hall");
-        secondFloorSomerset = new Room("in the second floor of the Somerset hall");
+        secondFloorSomerset = new Room("in the second floor of the Somerset hall, and the security is here..");
         library = new Room("in the Library");
         theatre = new Room("in the Theatre");
-        westBuilding = new Room("in the West Building, Mike is here!");
+        westBuilding = new Room("in the West Building, Mike is here");
         scienceCenter = new Room("in the Science Center");
-        physicalEducation = new Room("in the P.E. Building");
+        physicalEducation = new Room("in the P.E. Building. Erik(the trainer) is at the gym");
         bateman = new Room("in the Bateman Center");
         tutoring = new Room("in the Tutoring Center");
-        soccerField = new Room("by the Soccer Field");
-        artsBuilding = new Room("in the Arts Building");
-        cafeteria = new Room("in the Cafeteria");
+        soccerField = new Room("by the Soccer Field. You see the ball bag, take a ball if you want");
+        artsBuilding = new Room("in the Arts Building. Professor Crosbie is hereee");
+        cafeteria = new Room("in the Cafeteria. There are free bagels here today");
         collegeCenter = new Room("in the College Center");
         secondFloorHunterdon = new Room("in the second floor of the Hunterdon hall");
         firstFloorHunterdon = new Room("in the first floor of the Hunterdon hall");
@@ -86,6 +93,7 @@ public class Game
         //create items
         book = new Items( 2, "Anatomy book");
         keys = new Items( 2, "Keychain");
+        soccerBall = new Items( 3, "Soccer ball");
         
         // //creating the starting energy
         // energyLevel = new Energy(10);
@@ -150,12 +158,19 @@ public class Game
         secondFloorSomerset.setItem(keys);
         
         firstFloorSomerset.setExit("up", secondFloorSomerset);
-        // firstFloorSomerset.setExit("west", mainEntrance);        this door is a trap door
+        // firstFloorSomerset.setExit("west", mainEntrance);        this door is a trap door (no way back)
 
         library2 = library;
         westBuilding2 = westBuilding;
         cafeteria2 = cafeteria;
         advising2 = advising;
+        firstFloorSomerset2 = firstFloorSomerset;
+        mainEntrance2 = mainEntrance;
+        secondFloorSomerset2 = secondFloorSomerset;
+        gym = physicalEducation;
+        soccerField2 = soccerField;
+        arts2 = artsBuilding;
+        
         bookAnatomy = book;
         
         currentRoom = mainEntrance;  // start game in the main entrance
@@ -302,6 +317,18 @@ public class Game
             System.out.println("Mike: ");
             System.out.println("Hey man, you just missed him! He said he was going to his office.");
         }
+        
+        else if(currentRoom == secondFloorSomerset2){
+            System.out.println("Security: ");
+            System.out.println("I don't know about your professor, but there's free bagels in the Cafeteria if you are hungry.");
+        }
+        
+        else if(currentRoom == gym){
+            System.out.println("Erik: ");
+            System.out.println("Hey, I think Crosbie's office is in the Arts building man, go check it out. And how is the knee?");
+        }
+        
+        
     }
     
     /*.
@@ -372,8 +399,15 @@ public class Game
                 items++;
                 items++;
                 
+                
             }
             
+            else if(itemToTake.getDescription() == "Soccer ball"){
+                bag.put("Ball", "Ball");
+                items++;
+                items++;
+                items++;
+            }
         }
         
         else {
@@ -411,7 +445,13 @@ public class Game
      */
     private void backOneRoom(){
         
-        if (pastRoom != null){
+        if( currentRoom == firstFloorSomerset2 && pastRoom == mainEntrance2){
+            
+            System.out.println("You went through a trap door, you can't go back.");
+        }
+        
+        
+        else if (pastRoom != null){
             
             currentRoom = pastRoom;
             System.out.println(currentRoom.getLongDescription());
@@ -438,6 +478,16 @@ public class Game
             return;
         }
 
+        if(energy == 3){
+            energyStatus = "You are starving!";
+        }
+        else if(energy > 3 && energy == 6){
+            energyStatus = "You are getting hungry...";
+        }
+        else {
+            energyStatus = "";
+        }
+        
         String direction = command.getSecondWord();
 
         // Try to leave current room.
@@ -449,7 +499,7 @@ public class Game
         else {
             pastRoom = currentRoom;
             currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println(currentRoom.getLongDescription() + "\n" + energyStatus);
             energy--;
             
         }
@@ -460,6 +510,14 @@ public class Game
             finished = true;
         }
         
+        if(currentRoom == arts2){
+            System.out.println("YOU FOUND PROFESSOR CROSBIE!!!");
+            System.out.println("You found Professor Crosbie on time to turn in your homework, Congratulations!");
+            System.out.println("YOU WIN!");
+            System.out.println("Thank you for playing, bye bye.");
+            finished = true;
+            
+        }
     }
     
     /** 
